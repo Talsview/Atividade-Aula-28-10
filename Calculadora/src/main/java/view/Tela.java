@@ -4,6 +4,10 @@
  */
 package view;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 import model.Calculadora;
 
 /**
@@ -42,6 +46,8 @@ public class Tela extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtHistorico = new javax.swing.JTextArea();
         btLimparHistorico = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btSomar = new javax.swing.JButton();
         btSubtrair = new javax.swing.JButton();
@@ -80,24 +86,41 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Historico");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jtxtnum2)
-                    .addComponent(jtxtnum1))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfnum1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfnum2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btLimparHistorico)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jtxtnum2)
+                        .addComponent(jtxtnum1))
+                    .addComponent(jButton2))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btLimparHistorico)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalvar)
+                        .addGap(19, 19, 19))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfnum1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfnum2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tfnum1, tfnum2});
@@ -117,7 +140,10 @@ public class Tela extends javax.swing.JFrame {
                             .addComponent(tfnum2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtxtnum2))))
                 .addGap(18, 18, 18)
-                .addComponent(btLimparHistorico)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btLimparHistorico)
+                    .addComponent(btnSalvar)
+                    .addComponent(jButton2))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -362,6 +388,17 @@ public class Tela extends javax.swing.JFrame {
         txtHistorico.setText("");
     }//GEN-LAST:event_btLimparHistoricoActionPerformed
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        String caminho = "C:\\Users\\aluno\\Documents\\NetBeansProjects\\Calculadora\\HistoricoCalc.txt";
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminho))) {
+        writer.write(txtHistorico.getText());
+        JOptionPane.showMessageDialog(this, "Histórico salvo com sucesso!");
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao salvar o histórico: " + e.getMessage());
+    }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,7 +430,9 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JButton btMultiplicar;
     private javax.swing.JButton btSomar;
     private javax.swing.JButton btSubtrair;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
